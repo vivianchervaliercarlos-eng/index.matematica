@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ecuaciones Algebraicas - APRENDE MATEMATICA</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#000814;
+    color:white;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    pointer-events:none;
+}
+.encabezado{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:45px 20px 30px;
+}
+
+.encabezado h1{
+    font-size:45px;
+    margin:0 0 10px;
+    color:white;
+
+    text-shadow:
+        0 0 5px #008cff,
+        0 0 15px #008cff,
+        3px 3px 0 #001b3d;
+}
+
+.encabezado p{
+    font-size:20px;
+    margin:0;
+    color:#d9eeff;
+    text-shadow:0 0 8px #008cff;
+}
+.contenido{
+    position:relative;
+    z-index:2;
+    width:85%;
+    max-width:1000px;
+    margin:auto;
+    padding-bottom:30px;
+}
+
+.caja{
+    background:linear-gradient(145deg,#075da8,#003b73);
+    color:white;
+    padding:30px;
+    margin:30px 0;
+    border-radius:20px;
+
+    border:6px solid #000;
+
+    box-shadow:
+        8px 10px 0 #000,
+        0 0 15px #008cff,
+        0 0 30px rgba(0,140,255,0.7);
+
+    transition:0.3s;
+}
+
+.caja:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        10px 13px 0 #000,
+        0 0 20px #008cff,
+        0 0 40px rgba(0,140,255,0.9);
+}
+
+.caja h2{
+    color:white;
+    font-size:30px;
+    border-bottom:3px solid #69c6ff;
+    padding-bottom:10px;
+    text-shadow:0 0 8px #008cff;
+}
+
+.caja h3{
+    color:#8dd7ff;
+    font-size:23px;
+    text-shadow:0 0 7px #008cff;
+}
+
+
+.definicion{
+    background:#e8f5ff;
+    color:#123;
+    padding:20px;
+    border-left:6px solid #008cff;
+    border-radius:10px;
+
+    box-shadow:
+        0 0 10px rgba(0,140,255,0.8);
+}
+
+.formula{
+    background:linear-gradient(145deg,#d7f0ff,#a9dcff);
+    padding:20px;
+    margin:15px 0;
+    border-radius:15px;
+    text-align:center;
+    font-size:25px;
+    color:#003b73;
+    font-weight:bold;
+
+    border:4px solid #000;
+
+    box-shadow:
+        5px 6px 0 #000,
+        0 0 12px #00aaff;
+}
+
+.ejemplo{
+    background:#eef8ff;
+    color:#17202a;
+    padding:20px;
+    margin:20px 0;
+    border-radius:15px;
+
+    border:4px solid #000;
+
+    box-shadow:
+        5px 6px 0 #000,
+        0 0 10px rgba(0,140,255,0.7);
+}
+
+.ejemplo h3{
+    color:#003b73;
+}
+
+.paso{
+    background:white;
+    color:#111;
+    padding:15px;
+    margin:10px 0;
+    border-radius:10px;
+
+    border-left:6px solid #008cff;
+
+    font-size:18px;
+
+    box-shadow:
+        3px 4px 0 #000,
+        0 0 8px rgba(0,140,255,0.5);
+}
+
+
+.resultado{
+    background:linear-gradient(145deg,#dff5df,#b8e8b8);
+    color:#174d17;
+    padding:18px;
+    border-radius:12px;
+    font-size:21px;
+    font-weight:bold;
+
+    border:4px solid #000;
+
+    box-shadow:
+        4px 5px 0 #000,
+        0 0 10px rgba(0,255,80,0.5);
+}
+
+.regla{
+    padding:15px;
+    background:linear-gradient(145deg,#e9f6ff,#cceaff);
+    color:#123;
+    border-radius:10px;
+    margin:10px 0;
+
+    border:3px solid #000;
+
+    box-shadow:
+        3px 4px 0 #000,
+        0 0 8px rgba(0,140,255,0.5);
+}
+
+
+.ejercicio{
+    background:#eef8ff;
+    color:#222;
+    padding:25px;
+    margin:25px 0;
+    border-radius:15px;
+
+    border:5px solid #000;
+
+    box-shadow:
+        6px 7px 0 #000,
+        0 0 12px #008cff;
+}
+
+.ejercicio h3{
+    color:#003b73;
+    text-shadow:none;
+}
+
+.indicacion{
+    background:#fff4d6;
+    color:#333;
+    padding:18px;
+    border-radius:12px;
+    border-left:6px solid #d99b00;
+
+    border-top:2px solid #000;
+    border-right:2px solid #000;
+    border-bottom:2px solid #000;
+}
+
+
+.botones{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    padding:35px 20px 50px;
+}
+
+.boton{
+
+    padding:15px 30px;
+
+    border:5px solid #000;
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:18px;
+    font-weight:bold;
+
+    margin:10px;
+
+    background:linear-gradient(145deg,#1597ff,#0057a8);
+
+    color:white;
+
+    text-shadow:
+        0 0 4px #00aaff,
+        2px 2px 0 #003b73;
+
+    box-shadow:
+        6px 7px 0 #000,
+        0 0 10px #008cff,
+        0 0 20px rgba(0,140,255,0.8);
+
+    transition:0.25s;
+}
+
+.boton:hover{
+
+    transform:translateY(-3px) scale(1.05);
+
+    background:linear-gradient(145deg,#36b0ff,#006dcc);
+
+    box-shadow:
+        8px 9px 0 #000,
+        0 0 15px #00aaff,
+        0 0 30px rgba(0,170,255,0.9);
+}
+
+.boton:active{
+
+    transform:translateY(4px);
+
+    box-shadow:
+        3px 4px 0 #000,
+        0 0 10px #008cff;
+}
+
+
+::-webkit-scrollbar{
+    width:14px;
+}
+
+::-webkit-scrollbar-track{
+    background:#000814;
+    border-left:2px solid #003b73;
+}
+
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(
+        180deg,
+        #1597ff,
+        #0057a8
+    );
+
+    border-radius:10px;
+
+    border:3px solid #000;
+
+    box-shadow:
+        0 0 10px #008cff;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:linear-gradient(
+        180deg,
+        #4db9ff,
+        #0073d1
+    );
+}
+
+@media(max-width:700px){
+
+    .encabezado{
+        padding:30px 15px;
+    }
+
+    .encabezado h1{
+        font-size:32px;
+    }
+
+    .encabezado p{
+        font-size:17px;
+    }
+
+    .contenido{
+        width:90%;
+    }
+
+    .caja{
+        padding:20px;
+        margin:25px 0;
+    }
+
+    .caja h2{
+        font-size:25px;
+    }
+
+    .caja h3{
+        font-size:20px;
+    }
+
+    .formula{
+        font-size:20px;
+        padding:15px;
+    }
+
+    .ejercicio{
+        padding:18px;
+    }
+
+    .boton{
+        width:90%;
+        max-width:300px;
+        font-size:17px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+
+
+<canvas id="fondo"></canvas>
+
+
+
+<div class="encabezado">
+
+    <h1> Ecuaciones Algebraicas</h1>
+
+    <p>
+        Tema 1 - Primer Trimestre
+    </p>
+
+</div>
+
+
+<div class="contenido">
+
+
+
+
+<div class="caja">
+
+    <h2>1. Introducción</h2>
+
+    <p>
+        Las ecuaciones algebraicas son igualdades matemáticas en las que
+        aparecen números, operaciones y una o más incógnitas.
+    </p>
+
+    <p>
+        La incógnita normalmente se representa mediante una letra,
+        por ejemplo <b>x</b>.
+    </p>
+
+    <div class="definicion">
+
+        <b>Ejemplo:</b>
+
+        <p>
+            x + 5 = 12
+        </p>
+
+        <p>
+            En esta ecuación, <b>x</b> es la incógnita porque necesitamos
+            encontrar qué número debe ocupar su lugar para que la igualdad
+            sea verdadera.
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<div class="caja">
+
+    <h2>2. ¿Qué es una ecuación?</h2>
+
+    <p>
+        Una ecuación es una igualdad entre dos expresiones matemáticas
+        que contiene una o más incógnitas.
+    </p>
+
+    <div class="formula">
+        2x + 5 = 15
+    </div>
+
+    <p>
+        Una ecuación tiene dos partes:
+    </p>
+
+    <div class="regla">
+        <b>Primer miembro:</b> todo lo que está a la izquierda del signo =.
+    </div>
+
+    <div class="regla">
+        <b>Segundo miembro:</b> todo lo que está a la derecha del signo =.
+    </div>
+
+    <p>
+        En el ejemplo:
+    </p>
+
+    <div class="formula">
+        2x + 5 = 15
+    </div>
+
+    <p>
+        <b>Primer miembro:</b> 2x + 5
+    </p>
+
+    <p>
+        <b>Segundo miembro:</b> 15
+    </p>
+
+</div>
+
+
+
+<div class="caja">
+
+    <h2>3. Elementos de una ecuación</h2>
+
+    <h3>🔹 Incógnita</h3>
+
+    <p>
+        Es el valor que queremos encontrar. Generalmente se representa
+        con una letra.
+    </p>
+
+    <div class="formula">
+        3x + 4 = 16
+    </div>
+
+    <p>
+        La incógnita es <b>x</b>.
+    </p>
+
+
+    <h3>🔹 Coeficiente</h3>
+
+    <p>
+        Es el número que multiplica a la incógnita.
+    </p>
+
+    <div class="formula">
+        5x
+    </div>
+
+    <p>
+        El coeficiente es <b>5</b>.
+    </p>
+
+
+    <h3>🔹 Término independiente</h3>
+
+    <p>
+        Es el número que aparece sin estar acompañado de una incógnita.
+    </p>
+
+    <div class="formula">
+        4x + 7 = 19
+    </div>
+
+    <p>
+        Los números 7 y 19 son términos independientes.
+    </p>
+
+</div>
+
+
+<div class="caja">
+
+    <h2>4. Propiedades de las ecuaciones</h2>
+
+    <p>
+        Para resolver una ecuación debemos mantener la igualdad.
+        Podemos realizar la misma operación en ambos miembros.
+    </p>
+
+    <div class="regla">
+        <b>Regla 1:</b> Podemos sumar el mismo número a ambos lados.
+    </div>
+
+    <div class="regla">
+        <b>Regla 2:</b> Podemos restar el mismo número a ambos lados.
+    </div>
+
+    <div class="regla">
+        <b>Regla 3:</b> Podemos multiplicar ambos lados por el mismo número.
+    </div>
+
+    <div class="regla">
+        <b>Regla 4:</b> Podemos dividir ambos lados por el mismo número,
+        siempre que no sea cero.
+    </div>
+
+    <p>
+        El objetivo es conseguir que la incógnita quede sola.
+    </p>
+
+</div>
+
+
+
+<div class="caja">
+
+    <h2>5. Ecuaciones de primer grado</h2>
+
+    <p>
+        Una ecuación de primer grado es aquella en la que la incógnita
+        tiene exponente 1.
+    </p>
+
+    <div class="formula">
+        ax + b = c
+    </div>
+
+    <p>
+        Por ejemplo:
+    </p>
+
+    <div class="formula">
+        3x + 5 = 20
+    </div>
+
+    <p>
+        El objetivo es encontrar el valor de <b>x</b>.
+    </p>
+
+</div>
+
+<div class="caja">
+
+    <h2>6. Ejemplos básicos paso a paso</h2>
+
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo 1: x + 7 = 15</h3>
+
+        <p>
+            <b>Paso 1:</b> Dejamos sola la x.
+        </p>
+
+        <div class="paso">
+            x + 7 = 15
+        </div>
+
+        <p>
+            <b>Paso 2:</b> El 7 está sumando. Utilizamos la operación
+            contraria: restar 7.
+        </p>
+
+        <div class="paso">
+            x + 7 - 7 = 15 - 7
+        </div>
+
+        <p>
+            <b>Paso 3:</b>
+        </p>
+
+        <div class="paso">
+            x = 8
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 8
+        </div>
+
+    </div>
+
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo 2: x - 6 = 10</h3>
+
+        <p>
+            <b>Paso 1:</b>
+        </p>
+
+        <div class="paso">
+            x - 6 = 10
+        </div>
+
+        <p>
+            <b>Paso 2:</b> El 6 está restando, por lo tanto sumamos 6.
+        </p>
+
+        <div class="paso">
+            x - 6 + 6 = 10 + 6
+        </div>
+
+        <p>
+            <b>Paso 3:</b>
+        </p>
+
+        <div class="paso">
+            x = 16
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 16
+        </div>
+
+    </div>
+
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo 3: 4x = 28</h3>
+
+        <p>
+            El 4 está multiplicando a x, por eso dividimos entre 4.
+        </p>
+
+        <div class="paso">
+            4x ÷ 4 = 28 ÷ 4
+        </div>
+
+        <div class="paso">
+            x = 7
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 7
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="caja">
+
+    <h2>7. Ecuaciones con dos operaciones</h2>
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo: 2x + 6 = 18</h3>
+
+        <p>
+            <b>Paso 1:</b> Restamos 6 a ambos miembros.
+        </p>
+
+        <div class="paso">
+            2x + 6 - 6 = 18 - 6
+        </div>
+
+        <div class="paso">
+            2x = 12
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Dividimos entre 2.
+        </p>
+
+        <div class="paso">
+            2x ÷ 2 = 12 ÷ 2
+        </div>
+
+        <div class="paso">
+            x = 6
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 6
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="caja">
+
+    <h2>8. Ecuaciones con paréntesis</h2>
+
+    <p>
+        Cuando una ecuación tiene paréntesis podemos utilizar la propiedad
+        distributiva.
+    </p>
+
+    <div class="formula">
+        a(b + c) = ab + ac
+    </div>
+
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo: 2(x + 3) = 14</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            2(x + 3) = 14
+            <br><br>
+            2x + 6 = 14
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Restamos 6.
+        </p>
+
+        <div class="paso">
+            2x = 14 - 6
+            <br><br>
+            2x = 8
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Dividimos entre 2.
+        </p>
+
+        <div class="paso">
+            x = 8 ÷ 2
+            <br><br>
+            x = 4
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 4
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="caja">
+
+    <h2>9. Ecuaciones con fracciones</h2>
+
+    <p>
+        Cuando aparecen fracciones podemos multiplicar ambos miembros
+        por el denominador para eliminar las fracciones.
+    </p>
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo:</h3>
+
+        <div class="formula">
+            x / 3 = 5
+        </div>
+
+        <p>
+            <b>Paso 1:</b> Multiplicamos ambos lados por 3.
+        </p>
+
+        <div class="paso">
+            x / 3 × 3 = 5 × 3
+        </div>
+
+        <p>
+            <b>Paso 2:</b>
+        </p>
+
+        <div class="paso">
+            x = 15
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 15
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="caja">
+
+    <h2>10. Comprobación de una ecuación</h2>
+
+    <p>
+        Después de encontrar el valor de la incógnita debemos comprobar
+        nuestra respuesta.
+    </p>
+
+    <div class="ejemplo">
+
+        <h3>Ejemplo:</h3>
+
+        <div class="formula">
+            2x + 4 = 12
+        </div>
+
+        <p>
+            Supongamos que encontramos:
+        </p>
+
+        <div class="paso">
+            x = 4
+        </div>
+
+        <p>
+            Reemplazamos x por 4:
+        </p>
+
+        <div class="paso">
+            2(4) + 4 = 12
+            <br><br>
+            8 + 4 = 12
+            <br><br>
+            12 = 12
+        </div>
+
+        <div class="resultado">
+            ✅ La respuesta es correcta.
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="caja">
+
+    <h2>11. Ejercicios de mayor dificultad</h2>
+
+    <div class="indicacion">
+
+        <b>📌 Indicaciones:</b>
+
+        <p>
+            Estos ejercicios requieren varios pasos. Lee cuidadosamente
+            cada ecuación y observa cómo se organizan las operaciones.
+        </p>
+
+        <p>
+            La recomendación es resolver primero los paréntesis, luego
+            reducir términos semejantes y finalmente despejar la incógnita.
+        </p>
+
+    </div>
+
+
+    
+    <div class="ejercicio">
+
+        <h3>Ejercicio 1: 3(x + 4) - 5 = 22</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            3x + 12 - 5 = 22
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Reducimos términos semejantes.
+        </p>
+
+        <div class="paso">
+            3x + 7 = 22
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Restamos 7 en ambos miembros.
+        </p>
+
+        <div class="paso">
+            3x = 22 - 7
+            <br><br>
+            3x = 15
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Dividimos entre 3.
+        </p>
+
+        <div class="paso">
+            x = 15 ÷ 3
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 5
+        </div>
+
+    </div>
+
+
+    
+    <div class="ejercicio">
+
+        <h3>Ejercicio 2: 5(x - 2) + 3x = 26</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            5x - 10 + 3x = 26
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Agrupamos los términos que contienen x.
+        </p>
+
+        <div class="paso">
+            8x - 10 = 26
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Sumamos 10 a ambos miembros.
+        </p>
+
+        <div class="paso">
+            8x = 36
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Dividimos entre 8.
+        </p>
+
+        <div class="paso">
+            x = 36 ÷ 8
+        </div>
+
+        <div class="paso">
+            x = 4.5
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 4.5
+        </div>
+
+    </div>
+
+
+
+    <div class="ejercicio">
+
+        <h3>Ejercicio 3: 4(x + 2) - 2(x - 3) = 22</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva a los dos
+            paréntesis.
+        </p>
+
+        <div class="paso">
+            4x + 8 - 2x + 6 = 22
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Reducimos términos semejantes.
+        </p>
+
+        <div class="paso">
+            2x + 14 = 22
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Restamos 14.
+        </p>
+
+        <div class="paso">
+            2x = 8
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Dividimos entre 2.
+        </p>
+
+        <div class="paso">
+            x = 4
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 4
+        </div>
+
+    </div>
+
+
+    
+    <div class="ejercicio">
+
+        <h3>Ejercicio 4: 7x - 4 = 3x + 20</h3>
+
+        <p>
+            En este ejercicio tenemos términos con x en ambos miembros.
+        </p>
+
+        <p>
+            <b>Paso 1:</b> Restamos 3x en ambos lados.
+        </p>
+
+        <div class="paso">
+            7x - 3x - 4 = 3x - 3x + 20
+        </div>
+
+        <div class="paso">
+            4x - 4 = 20
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Sumamos 4.
+        </p>
+
+        <div class="paso">
+            4x = 24
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Dividimos entre 4.
+        </p>
+
+        <div class="paso">
+            x = 6
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 6
+        </div>
+
+    </div>
+
+
+    
+
+    <div class="ejercicio">
+
+        <h3>Ejercicio 5: 3(2x - 1) + 5 = 4x + 16</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            6x - 3 + 5 = 4x + 16
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Reducimos los términos independientes.
+        </p>
+
+        <div class="paso">
+            6x + 2 = 4x + 16
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Restamos 4x en ambos miembros.
+        </p>
+
+        <div class="paso">
+            2x + 2 = 16
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Restamos 2.
+        </p>
+
+        <div class="paso">
+            2x = 14
+        </div>
+
+        <p>
+            <b>Paso 5:</b> Dividimos entre 2.
+        </p>
+
+        <div class="paso">
+            x = 7
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 7
+        </div>
+
+    </div>
+
+
+
+    <div class="ejercicio">
+
+        <h3>Ejercicio 6: 2(x + 5) + 3(x - 2) = 31</h3>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            2x + 10 + 3x - 6 = 31
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Reducimos términos semejantes.
+        </p>
+
+        <div class="paso">
+            5x + 4 = 31
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Restamos 4.
+        </p>
+
+        <div class="paso">
+            5x = 27
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Dividimos entre 5.
+        </p>
+
+        <div class="paso">
+            x = 27/5
+        </div>
+
+        <div class="paso">
+            x = 5.4
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 5.4
+        </div>
+
+    </div>
+
+
+    <div class="ejercicio">
+
+        <h3>Ejercicio 7: Ecuación con fracciones</h3>
+
+        <div class="formula">
+            x/2 + 3 = 11
+        </div>
+
+        <p>
+            <b>Paso 1:</b> Restamos 3.
+        </p>
+
+        <div class="paso">
+            x/2 = 8
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Multiplicamos ambos miembros por 2.
+        </p>
+
+        <div class="paso">
+            x = 16
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 16
+        </div>
+
+    </div>
+
+
+    <div class="ejercicio">
+
+        <h3>Ejercicio 8: Reto final</h3>
+
+        <div class="formula">
+            4(2x - 3) - 2(x + 5) = 18
+        </div>
+
+        <p>
+            <b>Paso 1:</b> Aplicamos la propiedad distributiva.
+        </p>
+
+        <div class="paso">
+            8x - 12 - 2x - 10 = 18
+        </div>
+
+        <p>
+            <b>Paso 2:</b> Reducimos términos semejantes.
+        </p>
+
+        <div class="paso">
+            6x - 22 = 18
+        </div>
+
+        <p>
+            <b>Paso 3:</b> Sumamos 22 a ambos miembros.
+        </p>
+
+        <div class="paso">
+            6x = 40
+        </div>
+
+        <p>
+            <b>Paso 4:</b> Dividimos entre 6.
+        </p>
+
+        <div class="paso">
+            x = 40/6
+        </div>
+
+        <p>
+            Simplificamos:
+        </p>
+
+        <div class="paso">
+            x = 20/3
+        </div>
+
+        <div class="resultado">
+            ✅ Resultado: x = 20/3 ≈ 6.67
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="caja">
+
+    <h2>12. Indicaciones para resolver ecuaciones</h2>
+
+    <div class="regla">
+        ✔ Lee toda la ecuación antes de comenzar.
+    </div>
+
+    <div class="regla">
+        ✔ Respeta el orden de las operaciones.
+    </div>
+
+    <div class="regla">
+        ✔ Si existen paréntesis, aplica primero la propiedad distributiva.
+    </div>
+
+    <div class="regla">
+        ✔ Reduce los términos semejantes.
+    </div>
+
+    <div class="regla">
+        ✔ Agrupa las incógnitas en un miembro.
+    </div>
+
+    <div class="regla">
+        ✔ Agrupa los números en el otro miembro.
+    </div>
+
+    <div class="regla">
+        ✔ Utiliza la operación contraria para despejar la incógnita.
+    </div>
+
+    <div class="regla">
+        ✔ Comprueba siempre el resultado.
+    </div>
+
+</div>
+
+
+
+
+<div class="caja">
+
+    <h2>13. Resumen del tema</h2>
+
+    <p>
+        Las ecuaciones algebraicas permiten encontrar valores desconocidos
+        mediante operaciones matemáticas.
+    </p>
+
+    <p>
+        Para resolverlas debemos mantener la igualdad entre los dos
+        miembros y realizar operaciones equivalentes.
+    </p>
+
+    <div class="formula">
+
+        SUMAR ↔ RESTAR
+
+        <br><br>
+
+        MULTIPLICAR ↔ DIVIDIR
+
+    </div>
+
+    <p>
+        Cuando aparecen paréntesis utilizamos la propiedad distributiva
+        y cuando existen términos semejantes debemos reducirlos.
+    </p>
+
+    <p>
+        Finalmente, siempre debemos comprobar que el valor obtenido
+        satisface la ecuación original.
+    </p>
+
+    <div class="resultado">
+        🎯 Objetivo principal: encontrar correctamente el valor de la incógnita.
+    </div>
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="botones">
+
+    <!-- VA A LA PÁGINA DE TEMAS -->
+
+    <button class="boton" onclick="location.href='1yo.html'">
+        ⬅ Volver a Temas
+    </button>
+
+
+    <!-- VA A LA PÁGINA DE INICIO -->
+
+    <button class="boton" onclick="location.href='nose que.html'">
+        🏠 Inicio
+    </button>
+
+</div>
+
+
+<script>
+
+const canvas = document.getElementById("fondo");
+const ctx = canvas.getContext("2d");
+
+let estrellas = [];
+let simbolos = [];
+
+
+function ajustarCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize", ajustarCanvas);
+
+
+for(let i = 0; i < 150; i++){
+
+    estrellas.push({
+
+        x:Math.random() * canvas.width,
+
+        y:Math.random() * canvas.height,
+
+        radio:Math.random() * 1.8 + 0.5,
+
+        brillo:Math.random()
+
+    });
+
+}
+
+const signos = [
+
+    "+",
+    "-",
+    "×",
+    "÷",
+    "=",
+    "π",
+    "√",
+    "∞",
+    "∑"
+
+];
+
+
+for(let i = 0; i < 80; i++){
+
+    simbolos.push({
+
+        x:Math.random() * canvas.width,
+
+        y:Math.random() * canvas.height,
+
+        velocidad:Math.random() * 0.7 + 0.2,
+
+        tamaño:Math.random() * 15 + 15,
+
+        signo:signos[
+            Math.floor(Math.random() * signos.length)
+        ]
+
+    });
+
+}
+
+
+
+function animar(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+
+    let gradiente = ctx.createRadialGradient(
+
+        canvas.width / 2,
+        canvas.height / 2,
+        50,
+
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width
+
+    );
+
+
+    gradiente.addColorStop(
+        0,
+        "#0a1f44"
+    );
+
+
+    gradiente.addColorStop(
+        1,
+        "#000814"
+    );
+
+
+    ctx.fillStyle = gradiente;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+
+    for(let estrella of estrellas){
+
+        estrella.brillo += 0.02;
+
+
+        let opacidad =
+            0.5 +
+            Math.sin(estrella.brillo) * 0.5;
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+            estrella.x,
+            estrella.y,
+            estrella.radio,
+            0,
+            Math.PI * 2
+        );
+
+
+        ctx.fillStyle =
+            `rgba(255,255,255,${opacidad})`;
+
+
+        ctx.fill();
+
+    }
+
+
+
+    for(let simbolo of simbolos){
+
+        simbolo.y += simbolo.velocidad;
+
+
+        if(simbolo.y > canvas.height + 30){
+
+            simbolo.y = -30;
+
+
+            simbolo.x =
+                Math.random() * canvas.width;
+
+        }
+
+
+        ctx.font =
+            `${simbolo.tamaño}px Arial`;
+
+
+        ctx.fillStyle =
+            "rgba(0,150,255,0.45)";
+
+
+        ctx.shadowBlur = 10;
+
+        ctx.shadowColor = "#008cff";
+
+
+        ctx.fillText(
+            simbolo.signo,
+            simbolo.x,
+            simbolo.y
+        );
+
+
+        ctx.shadowBlur = 0;
+
+    }
+
+
+    requestAnimationFrame(animar);
+
+}
+
+
+animar();
+  const canvas = document.getElementById("fondo");
+const ctx = canvas.getContext("2d");
+
+let estrellas = [];
+let simbolos = [];
+
+
+function ajustarCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize", ajustarCanvas);
+
+
+for(let i = 0; i < 150; i++){
+
+    estrellas.push({
+
+        x:Math.random() * canvas.width,
+
+        y:Math.random() * canvas.height,
+
+        radio:Math.random() * 1.8 + 0.5,
+
+        brillo:Math.random()
+
+    });
+
+}
+
+const signos = [
+
+    "+",
+    "-",
+    "×",
+    "÷",
+    "=",
+    "π",
+    "√",
+    "∞",
+    "∑"
+
+];
+
+
+for(let i = 0; i < 80; i++){
+
+    simbolos.push({
+
+        x:Math.random() * canvas.width,
+
+        y:Math.random() * canvas.height,
+
+        velocidad:Math.random() * 0.7 + 0.2,
+
+        tamaño:Math.random() * 15 + 15,
+
+        signo:signos[
+            Math.floor(Math.random() * signos.length)
+        ]
+
+    });
+
+}
+
+
+
+function animar(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+
+    let gradiente = ctx.createRadialGradient(
+
+        canvas.width / 2,
+        canvas.height / 2,
+        50,
+
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width
+
+    );
+
+
+    gradiente.addColorStop(
+        0,
+        "#0a1f44"
+    );
+
+
+    gradiente.addColorStop(
+        1,
+        "#000814"
+    );
+
+
+    ctx.fillStyle = gradiente;
+
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+
+    for(let estrella of estrellas){
+
+        estrella.brillo += 0.02;
+
+
+        let opacidad =
+            0.5 +
+            Math.sin(estrella.brillo) * 0.5;
+
+
+        ctx.beginPath();
+
+
+        ctx.arc(
+            estrella.x,
+            estrella.y,
+            estrella.radio,
+            0,
+            Math.PI * 2
+        );
+
+
+        ctx.fillStyle =
+            `rgba(255,255,255,${opacidad})`;
+
+
+        ctx.fill();
+
+    }
+
+
+
+    for(let simbolo of simbolos){
+
+        simbolo.y += simbolo.velocidad;
+
+
+        if(simbolo.y > canvas.height + 30){
+
+            simbolo.y = -30;
+
+
+            simbolo.x =
+                Math.random() * canvas.width;
+
+        }
+
+
+        ctx.font =
+            `${simbolo.tamaño}px Arial`;
+
+
+        ctx.fillStyle =
+            "rgba(0,150,255,0.45)";
+
+
+        ctx.shadowBlur = 10;
+
+        ctx.shadowColor = "#008cff";
+
+
+        ctx.fillText(
+            simbolo.signo,
+            simbolo.x,
+            simbolo.y
+        );
+
+
+        ctx.shadowBlur = 0;
+
+    }
+
+
+    requestAnimationFrame(animar);
+
+}
+
+
+animar();
+const canvas = document.getElementById("fondo");
+const ctx = canvas.getContext("2d");
+
+let estrellas = [];
+let simbolos = [];
+
+
+/* AJUSTAR CANVAS */
+
+function ajustarCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize", ajustarCanvas);
+
+
+/* =========================
+   ESTRELLAS
+========================= */
+
+for(let i = 0; i < 150; i++){
+
+    estrellas.push({
+
+        x:Math.random() * window.innerWidth,
+
+        y:Math.random() * window.innerHeight,
+
+        radio:Math.random() * 2,
+
+        brillo:Math.random()
+
+    });
+
+}
+
+
+/* =========================
+   SIMBOLOS MATEMATICOS
+========================= */
+
+const signos = [
+    "+",
+    "-",
+    "×",
+    "÷",
+    "=",
+    "π",
+    "√",
+    "∞",
+    "∑"
+];
+
+
+for(let i = 0; i < 80; i++){
+
+    simbolos.push({
+
+        x:Math.random() * window.innerWidth,
+
+        y:Math.random() * window.innerHeight,
+
+        velocidad:Math.random() * 1.5 + 0.3,
+
+        signo:signos[
+            Math.floor(
+                Math.random() * signos.length
+            )
+        ],
+
+        tamaño:Math.random() * 20 + 12,
+
+        opacidad:Math.random() * 0.5 + 0.2
+
+    });
+
+}
+
+
+/* =========================
+   ANIMACIÓN
+========================= */
+
+function animar(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /* ESTRELLAS */
+
+    estrellas.forEach(estrella => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            estrella.x,
+            estrella.y,
+            estrella.radio,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,255,255," +
+            estrella.brillo +
+            ")";
+
+        ctx.fill();
+
+    });
+
+
+    /* SIMBOLOS */
+
+    simbolos.forEach(simbolo => {
+
+        ctx.font =
+            simbolo.tamaño +
+            "px Arial";
+
+        ctx.fillStyle =
+            "rgba(0,170,255," +
+            simbolo.opacidad +
+            ")";
+
+        ctx.fillText(
+            simbolo.signo,
+            simbolo.x,
+            simbolo.y
+        );
+
+
+        simbolo.y += simbolo.velocidad;
+
+
+        if(simbolo.y > canvas.height + 30){
+
+            simbolo.y = -30;
+
+            simbolo.x =
+                Math.random() * canvas.width;
+
+        }
+
+    });
+
+
+    requestAnimationFrame(animar);
+
+}
+
+animar();
+  const canvas = document.getElementById("fondo");
+const ctx = canvas.getContext("2d");
+
+
+function resizeCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener("resize",resizeCanvas);
+
+
+/* =====================================
+   ESTRELLAS
+===================================== */
+
+let estrellas = [];
+
+for(let i=0;i<150;i++){
+
+    estrellas.push({
+
+        x:Math.random()*canvas.width,
+
+        y:Math.random()*canvas.height,
+
+        r:Math.random()*1.5
+
+    });
+
+}
+
+
+/* =====================================
+   SIMBOLOS MATEMATICOS
+===================================== */
+
+let simbolos = [];
+
+const simbolosMath = [
+    "+",
+    "-",
+    "×",
+    "÷",
+    "=",
+    "π",
+    "√",
+    "∞",
+    "∑"
+];
+
+
+for(let i=0;i<80;i++){
+
+    simbolos.push({
+
+        x:Math.random()*canvas.width,
+
+        y:Math.random()*canvas.height,
+
+        velocidad:0.5+Math.random()*1.5,
+
+        simbolo:
+            simbolosMath[
+                Math.floor(
+                    Math.random()*simbolosMath.length
+                )
+            ],
+
+        tamaño:16+Math.random()*18
+
+    });
+
+}
+
+
+/* =====================================
+   ANIMACION
+===================================== */
+
+function animar(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /* ESTRELLAS */
+
+    ctx.fillStyle="white";
+
+    estrellas.forEach(e=>{
+
+        ctx.beginPath();
+
+        ctx.arc(
+            e.x,
+            e.y,
+            e.r,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fill();
+
+    });
+
+
+    /* SIMBOLOS */
+
+    ctx.fillStyle="rgba(80,170,255,0.75)";
+
+    simbolos.forEach(s=>{
+
+        ctx.font =
+            s.tamaño +
+            "px Arial";
+
+        ctx.fillText(
+            s.simbolo,
+            s.x,
+            s.y
+        );
+
+
+        s.y += s.velocidad;
+
+
+        if(
+            s.y >
+            canvas.height + 30
+        ){
+
+            s.y = -30;
+
+            s.x =
+                Math.random() *
+                canvas.width;
+
+        }
+
+    });
+
+
+    requestAnimationFrame(animar);
+
+}
+
+animar();
+const canvas = document.getElementById("fondo");
+const ctx = canvas.getContext("2d");
+
+let estrellas = [];
+let simbolos = [];
+
+function ajustarCanvas(){
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize", ajustarCanvas);
+
+
+/* ESTRELLAS */
+
+for(let i = 0; i < 150; i++){
+
+    estrellas.push({
+
+        x:Math.random() * window.innerWidth,
+
+        y:Math.random() * window.innerHeight,
+
+        radio:Math.random() * 2,
+
+        brillo:Math.random()
+
+    });
+
+}
+
+
+/* SIMBOLOS MATEMATICOS */
+
+const signos = [
+    "+",
+    "-",
+    "×",
+    "÷",
+    "=",
+    "π",
+    "√",
+    "∞",
+    "∑"
+];
+
+for(let i = 0; i < 80; i++){
+
+    simbolos.push({
+
+        x:Math.random() * window.innerWidth,
+
+        y:Math.random() * window.innerHeight,
+
+        velocidad:Math.random() * 1.5 + 0.3,
+
+        signo:signos[Math.floor(Math.random() * signos.length)],
+
+        tamaño:Math.random() * 20 + 12,
+
+        opacidad:Math.random() * 0.5 + 0.2
+
+    });
+
+}
+
+
+/* ANIMACIÓN */
+
+function animar(){
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /* ESTRELLAS */
+
+    estrellas.forEach(estrella => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            estrella.x,
+            estrella.y,
+            estrella.radio,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            "rgba(255,255,255," +
+            estrella.brillo +
+            ")";
+
+        ctx.fill();
+
+    });
+
+
+    /* SIMBOLOS */
+
+    simbolos.forEach(simbolo => {
+
+        ctx.font =
+            simbolo.tamaño +
+            "px Arial";
+
+        ctx.fillStyle =
+            "rgba(0,170,255," +
+            simbolo.opacidad +
+            ")";
+
+        ctx.fillText(
+            simbolo.signo,
+            simbolo.x,
+            simbolo.y
+        );
+
+
+        simbolo.y += simbolo.velocidad;
+
+
+        if(simbolo.y > canvas.height + 30){
+
+            simbolo.y = -30;
+
+            simbolo.x =
+                Math.random() * canvas.width;
+
+        }
+
+    });
+
+
+    requestAnimationFrame(animar);
+
+}
+
+animar();
+* =================================================
+   FONDO ANIMADO
+================================================= */
+
+const canvas=document.getElementById("fondo");
+const ctx=canvas.getContext("2d");
+
+function ajustarCanvas(){
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+}
+
+ajustarCanvas();
+
+window.addEventListener("resize",ajustarCanvas);
+
+const simbolos=["+","−","×","÷","=","π","√","∞","∑","x²","%"];
+
+let particulas=[];
+
+for(let i=0;i<70;i++){
+
+particulas.push({
+
+x:Math.random()*window.innerWidth,
+y:Math.random()*window.innerHeight,
+vx:(Math.random()-.5)*.4,
+vy:(Math.random()-.5)*.4,
+s:Math.random()*18+10,
+sim:simbolos[Math.floor(Math.random()*simbolos.length)]
+
+});
+
+}
+
+function animarFondo(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+for(let p of particulas){
+
+p.x+=p.vx;
+p.y+=p.vy;
+
+if(p.x<0)p.x=canvas.width;
+if(p.x>canvas.width)p.x=0;
+if(p.y<0)p.y=canvas.height;
+if(p.y>canvas.height)p.y=0;
+
+ctx.fillStyle="rgba(21,151,255,.20)";
+ctx.font=p.s+"px Arial";
+ctx.fillText(p.sim,p.x,p.y);
+
+}
+
+requestAnimationFrame(animarFondo);
+
+}
+
+animarFondo();
+
+
+/* =================================================
+   DATOS
+================================================= */
+
+let juegoActual=0;
+
+let juegos={};
+
+
+/* =================================================
+   MOSTRAR TRIMESTRE
+================================================= */
+
+function mostrarTrimestre(trimestre){
+
+document.getElementById("panel").style.display="block";
+
+const titulo=document.getElementById("tituloTrimestre");
+
+if(trimestre===1){
+
+titulo.innerHTML="🟦 1ER TRIMESTRE — MODO ARCADE";
+
+mostrarJuego(1);
+mostrarJuego(2);
+ocultarJuego(3);
+ocultarJuego(4);
+ocultarJuego(5);
+ocultarJuego(6);
+
+}
+
+if(trimestre===2){
+
+titulo.innerHTML="🟪 2DO TRIMESTRE — MODO ARCADE";
+
+ocultarJuego(1);
+ocultarJuego(2);
+mostrarJuego(3);
+mostrarJuego(4);
+ocultarJuego(5);
+ocultarJuego(6);
+
+}
+
+if(trimestre===3){
+
+titulo.innerHTML="🟩 3ER TRIMESTRE — MODO ARCADE";
+
+ocultarJuego(1);
+ocultarJuego(2);
+ocultarJuego(3);
+ocultarJuego(4);
+mostrarJuego(5);
+mostrarJuego(6);
+
+}
+
+window.scrollTo({
+
+top:document.getElementById("panel").offsetTop-20,
+behavior:"smooth"
+
+});
+
+}
+
+function mostrarJuego(n){
+
+document.getElementById("juego"+n).style.display="block";
+
+}
+
+function ocultarJuego(n){
+
+document.getElementById("juego"+n).style.display="none";
+
+}
+
+
+/* =================================================
+   SISTEMA GENERAL
+================================================= */
+
+function crearEstado(n){
+
+juegos[n]={
+
+vidas:3,
+puntos:0,
+combo:0,
+tiempo:100,
+pregunta:0
+
+};
+
+}
+
+for(let i=1;i<=6;i++){
+
+crearEstado(i);
+
+}
+
+
+/* =================================================
+   JUEGO 1 — ECUACIONES
+================================================= */
+
+const ecuaciones=[
+
+{
+p:"x + 5 = 12",
+r:"7",
+o:["5","6","7","8"]
+},
+
+{
+p:"x - 4 = 10",
+r:"14",
+o:["12","13","14","15"]
+},
+
+{
+p:"2x = 18",
+r:"9",
+o:["7","8","9","10"]
+},
+
+{
+p:"3x + 2 = 14",
+r:"4",
+o:["3","4","5","6"]
+},
+
+{
+p:"5x - 5 = 20",
+r:"5",
+o:["4","5","6","7"]
+},
+
+{
+p:"4x + 8 = 24",
+r:"4",
+o:["3","4","5","6"]
+}
+
+];
+
+function iniciarJuego1(){
+
+crearEstado(1);
+nuevaEcuacion();
+
+}
+
+function nuevaEcuacion(){
+
+let estado=juegos[1];
+
+let q=ecuaciones[Math.floor(Math.random()*ecuaciones.length)];
+
+document.getElementById("pregunta1").textContent=q.p;
+
+let cont=document.getElementById("opciones1");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(1,10);
+document.getElementById("mensaje1").innerHTML="🔥 ¡PUERTA ABIERTA!";
+
+}else{
+
+respuestaIncorrecta(1);
+document.getElementById("mensaje1").innerHTML="💥 ¡Te equivocaste!";
+
+}
+
+setTimeout(nuevaEcuacion,650);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego1();
+
+
+/* =================================================
+   JUEGO 2 — COMPLEJOS
+================================================= */
+
+const complejos=[
+
+{
+p:"Número: 3 + 4i",
+r:"Real = 3 / Imaginaria = 4",
+o:[
+"Real = 3 / Imaginaria = 4",
+"Real = 4 / Imaginaria = 3",
+"Real = 7 / Imaginaria = 1",
+"Real = 3 / Imaginaria = -4"
+]
+},
+
+{
+p:"Número: 5 - 2i",
+r:"Real = 5 / Imaginaria = -2",
+o:[
+"Real = 5 / Imaginaria = 2",
+"Real = -5 / Imaginaria = -2",
+"Real = 5 / Imaginaria = -2",
+"Real = 7 / Imaginaria = 0"
+]
+},
+
+{
+p:"Número: -2 + 6i",
+r:"Real = -2 / Imaginaria = 6",
+o:[
+"Real = 2 / Imaginaria = 6",
+"Real = -2 / Imaginaria = 6",
+"Real = -2 / Imaginaria = -6",
+"Real = 4 / Imaginaria = 6"
+]
+}
+
+];
+
+function iniciarJuego2(){
+
+crearEstado(2);
+nuevoComplejo();
+
+}
+
+function nuevoComplejo(){
+
+let q=complejos[Math.floor(Math.random()*complejos.length)];
+
+document.getElementById("pregunta2").textContent=q.p;
+
+let cont=document.getElementById("opciones2");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(2,15);
+document.getElementById("mensaje2").innerHTML="🌀 ¡LO ATRAPASTE!";
+
+}else{
+
+respuestaIncorrecta(2);
+document.getElementById("mensaje2").innerHTML="💫 ¡El número escapó!";
+
+}
+
+setTimeout(nuevoComplejo,650);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego2();
+
+
+/* =================================================
+   JUEGO 3 — CUADRÁTICAS
+================================================= */
+
+const cuadraticas=[
+
+{
+p:"x² - 5x + 6 = 0",
+r:"x = 2 y x = 3",
+o:[
+"x = 1 y x = 6",
+"x = 2 y x = 3",
+"x = -2 y x = -3",
+"x = 3 y x = 5"
+]
+},
+
+{
+p:"x² - 7x + 12 = 0",
+r:"x = 3 y x = 4",
+o:[
+"x = 2 y x = 6",
+"x = 3 y x = 4",
+"x = -3 y x = -4",
+"x = 1 y x = 12"
+]
+},
+
+{
+p:"x² - 9x + 20 = 0",
+r:"x = 4 y x = 5",
+o:[
+"x = 2 y x = 10",
+"x = 4 y x = 5",
+"x = -4 y x = -5",
+"x = 1 y x = 20"
+]
+}
+
+];
+
+function iniciarJuego3(){
+
+crearEstado(3);
+nuevaCuadratica();
+
+}
+
+function nuevaCuadratica(){
+
+let q=cuadraticas[Math.floor(Math.random()*cuadraticas.length)];
+
+document.getElementById("pregunta3").textContent=q.p;
+
+let cont=document.getElementById("opciones3");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(3,20);
+document.getElementById("mensaje3").innerHTML="💣 ¡BOMBA DESACTIVADA!";
+
+}else{
+
+respuestaIncorrecta(3);
+document.getElementById("mensaje3").innerHTML="💥 ¡CASI!";
+
+}
+
+setTimeout(nuevaCuadratica,650);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego3();
+
+
+/* =================================================
+   JUEGO 4 — INECUACIONES
+================================================= */
+
+const desigualdades=[
+
+{
+p:"x > 3",
+r:"4, 5, 6, ...",
+o:[
+"1, 2, 3",
+"4, 5, 6, ...",
+"x = 3 solamente",
+"Todos los números negativos"
+]
+},
+
+{
+p:"x < 2",
+r:"..., -1, 0, 1",
+o:[
+"2, 3, 4, ...",
+"..., -1, 0, 1",
+"x = 2 solamente",
+"Todos los números positivos"
+]
+},
+
+{
+p:"x ≥ 5",
+r:"5, 6, 7, ...",
+o:[
+"..., 2, 3, 4",
+"5, 6, 7, ...",
+"x = 4",
+"Todos los negativos"
+]
+}
+
+];
+
+function iniciarJuego4(){
+
+crearEstado(4);
+nuevaDesigualdad();
+
+}
+
+function nuevaDesigualdad(){
+
+let q=desigualdades[Math.floor(Math.random()*desigualdades.length)];
+
+document.getElementById("pregunta4").textContent=q.p;
+
+let cont=document.getElementById("opciones4");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(4,15);
+document.getElementById("mensaje4").innerHTML="⚡ ¡RECTA DOMINADA!";
+
+}else{
+
+respuestaIncorrecta(4);
+document.getElementById("mensaje4").innerHTML="⚡ ¡Esa zona no!";
+
+}
+
+setTimeout(nuevaDesigualdad,650);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego4();
+
+
+/* =================================================
+   JUEGO 5 — PROGRESIONES
+================================================= */
+
+const progresiones=[
+
+{
+s:["2","4","6","8","?"],
+r:"10",
+o:["9","10","11","12"]
+},
+
+{
+s:["3","6","9","12","?"],
+r:"15",
+o:["13","14","15","16"]
+},
+
+{
+s:["5","10","15","20","?"],
+r:"25",
+o:["22","23","25","30"]
+},
+
+{
+s:["2","6","18","54","?"],
+r:"162",
+o:["108","124","162","216"]
+},
+
+{
+s:["1","4","7","10","?"],
+r:"13",
+o:["11","12","13","14"]
+}
+
+];
+
+function iniciarJuego5(){
+
+crearEstado(5);
+nuevaProgresion();
+
+}
+
+function nuevaProgresion(){
+
+let q=progresiones[Math.floor(Math.random()*progresiones.length)];
+
+let contSec=document.getElementById("secuencia5");
+
+contSec.innerHTML="";
+
+q.s.forEach(num=>{
+
+let d=document.createElement("div");
+
+d.className="numero-secuencia";
+d.textContent=num;
+
+contSec.appendChild(d);
+
+});
+
+let cont=document.getElementById("opciones5");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(5,20);
+document.getElementById("mensaje5").innerHTML="🚀 ¡NAVE IMPULSADA!";
+
+}else{
+
+respuestaIncorrecta(5);
+document.getElementById("mensaje5").innerHTML="🚀 ¡La nave perdió potencia!";
+
+}
+
+setTimeout(nuevaProgresion,650);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego5();
+
+
+/* =================================================
+   JUEGO 6 — FINANZAS
+================================================= */
+
+const inversiones=[
+
+{
+p:"Tienes $1000. Una inversión ofrece 10% de interés simple durante 1 año.",
+r:"$1100",
+o:["$1010","$1050","$1100","$1200"]
+},
+
+{
+p:"Tienes $2000. Interés simple del 5% durante 1 año.",
+r:"$2100",
+o:["$2050","$2100","$2150","$2200"]
+},
+
+{
+p:"Tienes $1500. Interés simple del 10% durante 2 años.",
+r:"$1800",
+o:["$1600","$1700","$1800","$1900"]
+}
+
+];
+
+function iniciarJuego6(){
+
+crearEstado(6);
+nuevaInversion();
+
+}
+
+function nuevaInversion(){
+
+let q=inversiones[Math.floor(Math.random()*inversiones.length)];
+
+document.getElementById("pregunta6").textContent=q.p;
+
+let cont=document.getElementById("opciones6");
+
+cont.innerHTML="";
+
+q.o.forEach(op=>{
+
+let b=document.createElement("button");
+
+b.className="opcion";
+b.textContent=op;
+
+b.onclick=()=>{
+
+if(op===q.r){
+
+respuestaCorrecta(6,25);
+
+document.getElementById("mensaje6").innerHTML=
+"💰 ¡TU DINERO CRECIÓ!";
+
+}else{
+
+respuestaIncorrecta(6);
+
+document.getElementById("mensaje6").innerHTML=
+"💸 ¡Perdiste la oportunidad!";
+
+}
+
+setTimeout(nuevaInversion,700);
+
+};
+
+cont.appendChild(b);
+
+});
+
+}
+
+iniciarJuego6();
+
+
+/* =================================================
+   SISTEMA DE PUNTOS
+================================================= */
+
+function respuestaCorrecta(n,puntos){
+
+let e=juegos[n];
+
+e.puntos+=puntos;
+e.combo++;
+
+if(e.combo>=3){
+
+e.puntos+=10;
+
+}
+
+actualizarMarcador(n);
+
+if(e.combo>=5){
+
+mostrarFinal(
+"🔥 ¡COMBO MONSTRUOSO!",
+"Has conseguido una racha de "+e.combo+" respuestas."
+);
+
+}
+
+}
+
+function respuestaIncorrecta(n){
+
+let e=juegos[n];
+
+e.vidas--;
+e.combo=0;
+
+actualizarMarcador(n);
+
+if(e.vidas<=0){
+
+mostrarFinal(
+"💀 GAME OVER",
+"Te quedaste sin vidas. ¡Pero puedes volver a intentarlo!"
+);
+
+e.vidas=3;
+e.puntos=0;
+e.combo=0;
+
+}
+
+}
+
+function actualizarMarcador(n){
+
+document.getElementById("vidas"+n).textContent=
+juegos[n].vidas;
+
+document.getElementById("puntos"+n).textContent=
+juegos[n].puntos;
+
+document.getElementById("combo"+n).textContent=
+juegos[n].combo;
+
+}
+
+
+/* =================================================
+   PANTALLA FINAL
+================================================= */
+
+function mostrarFinal(titulo,texto){
+
+document.getElementById("finalTitulo").textContent=titulo;
+
+document.getElementById("finalTexto").textContent=texto;
+
+document.getElementById("pantallaFinal").style.display="flex";
+
+}
+
+function cerrarFinal(){
+
+document.getElementById("pantallaFinal").style.display="none";
+
+}
+
+
+/* =================================================
+   EFECTO DE TECLADO
+================================================= */
+
+document.addEventListener("keydown",function(e){
+
+if(e.key==="Escape"){
+
+cerrarFinal();
+
+}
+
+});
+
+
+/* =================================================
+   ANIMACIÓN EXTRA DE BOTONES
+================================================= */
+
+document.querySelectorAll(".opcion").forEach(btn=>{
+
+btn.addEventListener("mouseenter",function(){
+
+this.style.transform="scale(1.04)";
+
+});
+
+btn.addEventListener("mouseleave",function(){
+
+this.style.transform="scale(1)";
+
+});
+
+});
+* ABRIR Y CERRAR EL FORMULARIO */
+
+const botonOpiniones = document.getElementById("abrirOpiniones");
+const formularioOpiniones = document.getElementById("formularioOpiniones");
+
+botonOpiniones.addEventListener("click", function(){
+    const abierto = formularioOpiniones.classList.toggle("visible");
+
+    botonOpiniones.setAttribute("aria-expanded", String(abierto));
+
+    if(abierto){
+        formularioOpiniones.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+    }
+});
+
+/* FONDO ANIMADO */
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function ajustarCanvas(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+ajustarCanvas();
+
+const simbolos = ["+","-","×","÷","=","π","√","∞","∑"];
+
+let particulas = [];
+let estrellas = [];
+
+class Estrella{
+    constructor(){
+        this.x = Math.random()*canvas.width;
+        this.y = Math.random()*canvas.height;
+        this.size = Math.random()*2;
+        this.opacity = Math.random();
+    }
+
+    draw(){
+        ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+        ctx.fill();
+    }
+}
+
+class Particula{
+    constructor(){
+        this.reset();
+        this.y = Math.random()*canvas.height;
+    }
+
+    reset(){
+        this.x = Math.random()*canvas.width;
+        this.y = -20;
+        this.size = Math.random()*25+15;
+        this.speedY = Math.random()*1+0.3;
+        this.simbolo = simbolos[
+            Math.floor(Math.random()*simbolos.length)
+        ];
+        this.opacity = Math.random()*0.8+0.2;
+    }
+
+    update(){
+        this.y += this.speedY;
+
+        if(this.y > canvas.height){
+            this.reset();
+        }
+    }
+
+    draw(){
+        ctx.fillStyle = `rgba(255,255,255,${this.opacity})`;
+        ctx.font = this.size+"px Arial";
+        ctx.fillText(this.simbolo,this.x,this.y);
+    }
+}
+
+function iniciarFondo(){
+    estrellas = [];
+    particulas = [];
+
+    for(let i=0;i<150;i++){
+        estrellas.push(new Estrella());
+    }
+
+    for(let i=0;i<80;i++){
+        particulas.push(new Particula());
+    }
+}
+
+function animarFondo(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    estrellas.forEach(e=>e.draw());
+
+    particulas.forEach(p=>{
+        p.update();
+        p.draw();
+    });
+
+    requestAnimationFrame(animarFondo);
+}
+
+iniciarFondo();
+animarFondo();
+
+window.addEventListener("resize",()=>{
+    ajustarCanvas();
+    iniciarFondo();
+});
+
+</script>
+
+
+</body>
+
+</html>
